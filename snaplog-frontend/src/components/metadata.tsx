@@ -6,16 +6,23 @@ export interface MetadataProps {
   changeHandler: (newMetadata: MetadataModel) => void;
 }
 
-const MetadataContainer = styled.div({
+const CameraFilmContainer = styled.div({
   display: "grid",
+  gridTemplateColumns: "1fr 1fr 1fr",
+});
+
+const LensDiv = styled.div({
+  padding: "0.5em 0.5em 0.5em 0em",
 });
 
 export function Metadata({ metadata }: MetadataProps) {
   return (
-    <MetadataContainer>
-      <div>📷 : {metadata.camera}</div>
-      <div>🔍 : {metadata.lens}</div>
-      <div>🎞️ : {metadata.film.label}</div>
-    </MetadataContainer>
+    <>
+      <CameraFilmContainer>
+        <div>📷 : {metadata.camera.label}</div>
+        <div>🎞️ : {metadata.film.label}</div>
+      </CameraFilmContainer>
+      <LensDiv>🔍 : {metadata.lens.label}</LensDiv>
+    </>
   );
 }

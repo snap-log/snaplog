@@ -3,6 +3,7 @@ import { Metadata } from "@/components/metadata";
 import { Frame } from "@/lib/model/frame";
 import { Metadata as MetadataModel } from "@/lib/model/metadata";
 import { Reel as ReelModel } from "@/lib/model/reel";
+import { list } from "@/lib/model/shutterSpeed";
 import React, { useState } from "react";
 
 interface ReelProps {
@@ -23,10 +24,15 @@ export function Reel({ reel: initialReel }: ReelProps) {
   return (
     <div>
       <Metadata
-        metadata={reel.metadata}
         changeHandler={metadataChangeHandler}
+        metadata={reel.metadata}
       />
-      <FramesTable frames={reel.frames} changeHandler={framesChangeHandler} />
+      <FramesTable
+        changeHandler={framesChangeHandler}
+        shutterSpeeds={list}
+        apertures={reel.metadata.lens.apertures}
+        frames={reel.frames}
+      />
     </div>
   );
 }

@@ -9,16 +9,16 @@ export const Table = styled.table({
   borderCollapse: "collapse",
 });
 
-export const TH = styled.th({
-  padding: "0.25em 2em 0.25em 0.5em",
+export const THContent = styled.div({
+  padding: "0.25em 0.5em 0.25em 0.5em",
 });
 
-export const THLeftBorder = styled(TH)({
+export const THLeftBorder = styled.th({
   borderLeft: standardBorder,
 });
 
 export const TD = styled.td({
-  padding: "0.25em 2em 0.25em 0.5em",
+  padding: "0.25em 0.5em 0.25em 0.5em",
 });
 
 export const TDLeftBorder = styled(TD)({
@@ -27,4 +27,16 @@ export const TDLeftBorder = styled(TD)({
 
 export const TRBottomBorder = styled.tr({
   borderBottom: standardBorder,
+});
+
+export const NewFrameButton = styled.button({
+  padding: "0.25em 0.5em 0.25em 0.5em",
+  background: "none",
+  border: "none",
+  cursor: "pointer",
+  textAlign: "center",
+});
+
+export const NewFrameText = styled.div({
+  color: "grey",
 });

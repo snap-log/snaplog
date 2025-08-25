@@ -1,6 +1,7 @@
 export interface Aperture {
   label: string;
   fNumber: number;
+  key: string;
 }
 
 function label(fNumber: number) {
@@ -11,6 +12,7 @@ export const newAperture = (fNumber: number): Aperture => {
   return {
     fNumber,
     label: label(fNumber),
+    key: fNumber.toPrecision(2),
   };
 };
 

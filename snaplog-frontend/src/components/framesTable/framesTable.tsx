@@ -2,19 +2,30 @@ import { FrameRow } from "@/components/framesTable/frameRow";
 import { Table } from "@/components/framesTable/framesTable.styles";
 import { FramesTableHeader } from "@/components/framesTable/framesTableHeader";
 import { NewFrameRow } from "@/components/framesTable/newFrameRow";
+import { Aperture } from "@/lib/model/aperture";
 import { Frame } from "@/lib/model/frame";
+import { ShutterSpeed } from "@/lib/model/shutterSpeed";
 
 export interface FramesTableProps {
-  frames: Frame[];
   changeHandler: (newFrames: Frame[]) => void;
+  shutterSpeeds: ShutterSpeed[];
+  apertures: Aperture[];
+  frames: Frame[];
 }
 
-export function FramesTable({ frames, changeHandler }: FramesTableProps) {
-  const handleFrameChange = (newFrame: Frame, index: number) => {
-    const newFrames = frames;
-    newFrames[index] = newFrame;
+export function FramesTable({
+  changeHandler,
+  shutterSpeeds,
+  apertures,
+  frames,
+}: FramesTableProps) {
+  const generateFrameChangeHandler = (index: number) => {
+    return (newFrame: Frame) => {
+      const newFrames = frames;
+      newFrames[index] = newFrame;
 
-    changeHandler(newFrames);
+      changeHandler(newFrames);
+    };
   };
 
   const handleNewFrame = (newFrame: Frame) => {
@@ -28,9 +39,19 @@ export function FramesTable({ frames, changeHandler }: FramesTableProps) {
       <FramesTableHeader />
       <tbody>
         {frames.map((frame, index) => (
-          <FrameRow key={index} count={index + 1} frame={frame} />
+          <FrameRow
+            key={index}
+            changeHandler={generateFrameChangeHandler(index)}
+            apertures={apertures}
+            shutterSpeeds={shutterSpeeds}
+            count={index + 1}
+            frame={frame}
+          />
         ))}
-        <NewFrameRow lastFrame={frames[frames.length - 1]} />
+        <NewFrameRow
+          newFrameHandler={handleNewFrame}
+          lastFrame={frames[frames.length - 1]}
+        />
       </tbody>
     </Table>
   );

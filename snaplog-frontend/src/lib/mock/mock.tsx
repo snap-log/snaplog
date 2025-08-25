@@ -1,16 +1,42 @@
+import { Aperture, list as apertureList } from "@/lib/model/aperture";
+import { Camera } from "@/lib/model/camera";
 import { Film } from "@/lib/model/film";
+import { Lens } from "@/lib/model/lens";
 import { Metadata } from "@/lib/model/metadata";
+import {
+  ShutterSpeed,
+  list as shutterSpeedList,
+} from "@/lib/model/shutterSpeed";
 
-export const mockCamera = (override?: string) => {
-  return override ?? "Nikon FM2";
+export const mockShutterSpeeds = (override?: ShutterSpeed[]) => {
+  return override ?? shutterSpeedList;
 };
-export const mockLens = (override?: string) => {
-  return override ?? "Nikon 50mm f1.8 Series E";
+
+export const mockCamera = (overrides?: Partial<Camera>): Camera => {
+  return {
+    label: "Nikon FM2",
+    shutterSpeeds: shutterSpeedList,
+    ...overrides,
+  };
 };
-export const mockFilm = (): Film => {
+
+export const mockApertures = (override?: Aperture[]): Aperture[] => {
+  return override ?? apertureList;
+};
+
+export const mockLens = (overrides?: Partial<Lens>): Lens => {
+  return {
+    label: "Nikon 50mm f1.8 Series E",
+    apertures: mockApertures(),
+    ...overrides,
+  };
+};
+
+export const mockFilm = (overrides?: Partial<Film>): Film => {
   return {
     label: "Kodak Gold 200",
     iso: 200,
+    ...overrides,
   };
 };
 

@@ -1,5 +1,5 @@
 import {
-  TH,
+  THContent,
   THLeftBorder,
   TRBottomBorder,
 } from "@/components/framesTable/framesTable.styles";
@@ -8,10 +8,21 @@ export function FramesTableHeader() {
   return (
     <thead>
       <TRBottomBorder>
-        <TH scope="col">#</TH>
-        <THLeftBorder scope="col">Aperture</THLeftBorder>
-        <THLeftBorder scope="col">Shutter Speed</THLeftBorder>
-        <THLeftBorder scope="col">Notes</THLeftBorder>
+        <th scope="col">
+          <THContent>#</THContent>
+        </th>
+        <THLeftBorder scope="col">
+          <THContent>Aperture</THContent>
+        </THLeftBorder>
+        <THLeftBorder scope="col">
+          <THContent>Shutter Speed</THContent>
+        </THLeftBorder>
+        <THLeftBorder>
+          <THContent>EV</THContent>
+        </THLeftBorder>
+        <THLeftBorder scope="col">
+          <THContent>Notes</THContent>
+        </THLeftBorder>
       </TRBottomBorder>
     </thead>
   );
